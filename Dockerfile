@@ -1,9 +1,9 @@
 FROM gradle:7.6.0-jdk17 AS build
 WORKDIR /app
-COPY build.gradle .
-COPY settings.gradle .
-COPY src ./src
-RUN gradle bootJar --no-daemon
+COPY --chown=gradle:gradle build.gradle .
+COPY --chown=gradle:gradle settings.gradle .
+COPY --chown=gradle:gradle src ./src
+RUN gradle clean bootJar --no-daemon
 
 FROM eclipse-temurin:17-jre
 WORKDIR /app
