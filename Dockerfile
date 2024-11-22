@@ -3,7 +3,7 @@ WORKDIR /app
 COPY build.gradle .
 COPY settings.gradle .
 COPY src ./src
-RUN gradle clean bootJar --stacktrace --no-daemon
+RUN gradle clean --refresh-dependencies --stacktrace && gradle bootJar --stacktrace --no-daemon
 
 FROM eclipse-temurin:17-jre
 WORKDIR /app
